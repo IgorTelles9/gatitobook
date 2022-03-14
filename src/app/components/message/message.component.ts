@@ -7,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MessageComponent implements OnInit {
   @Input()
-  message='';
+  message = '';
+  danger = false;
 
   constructor() {}
 

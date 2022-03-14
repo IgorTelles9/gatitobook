@@ -1,0 +1,74 @@
+<h4 class="text-center">sign up and show us your furry friend!</h4>
+<form action="" class="form mt-4" [formGroup]="signupForm" (submit)="signup()">
+  <div class="form-group">
+    <input
+      type="email"
+      placeholder="email"
+      class="form-control"
+      formControlName="email"
+    />
+    <app-message
+      *ngIf="signupForm.get('email')?.errors?.['email'] && signupForm.get('email')?.touched"
+      message="email invalid"
+    ></app-message>
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      placeholder="full name"
+      class="form-control"
+      formControlName="fullName"
+    />
+    <app-message
+      *ngIf="signupForm.get('fullName')?.errors?.['minlength'] && signupForm.get('fullName')?.touched"
+      message="your name must have more than three characters"
+    ></app-message>
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      placeholder="username"
+      class="form-control"
+      formControlName="userName"
+    />
+    <app-message
+      *ngIf="signupForm.get('userName')?.errors?.['not_lowercased'] && signupForm.get('userName')?.touched"
+      message="your username must be lowercased"
+    ></app-message>
+    <app-message
+      *ngIf="signupForm.get('userName')?.errors?.['userExists'] && signupForm.get('userName')?.touched"
+      message="username already taken"
+    ></app-message>
+  </div>
+  <div class="form-group">
+    <input
+      type="password"
+      placeholder="password"
+      class="form-control"
+      formControlName="password"
+    />
+    <app-message
+      *ngIf="signupForm.get('password')?.errors?.['minlength'] && signupForm.get('password')?.touched"
+      message="your password should be at least 6 characters long"
+    ></app-message>
+  </div>
+  <app-message
+    *ngIf="signupForm.errors?.['usernamePasswordSame'] && signupForm.get('password')?.touched"
+    message="your password and username can't be the same"
+  ></app-message>
+
+  <app-message
+    *ngIf="
+    (signupForm.get('email')?.errors?.['required'] 
+    && signupForm.get('email')?.touched) ||
+    (signupForm.get('fullName')?.errors?.['required'] 
+    && signupForm.get('fullName')?.touched) || 
+    (signupForm.get('userName')?.errors?.['required'] 
+    && signupForm.get('userName')?.touched) || 
+    (signupForm.get('password')?.errors?.['required'] 
+    && signupForm.get('password')?.touched)"
+    message="all fields are required"
+  ></app-message>
+  <button type="submit" class="btn btn-primary btn-block">sign up</button>
+</form>
+<p>already an user? <a [routerLink]="['']">login now!</a></p>

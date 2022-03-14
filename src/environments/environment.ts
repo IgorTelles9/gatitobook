@@ -7,7 +7,9 @@ export const environment = {
 
   backendHost: 'http://localhost',
   backendPort: '3000',
-  userEndpoint: 'user'
+  userLoginEndpoint: 'user/login',
+  userSignupEndpoint: 'user/signup',
+  userExistsEndpoint: 'user/exists'
 
 };
 

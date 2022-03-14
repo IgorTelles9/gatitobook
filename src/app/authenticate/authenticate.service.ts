@@ -1,24 +1,30 @@
+import { UserService } from './user/user.service';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticateService {
+  private loginUrl = `${env.backendHost}:${env.backendPort}/${env.userLoginEndpoint}`;
 
-  private loginUrl = `${env.backendHost}:${env.backendPort}/${env.userEndpoint}/login`
+  constructor(private httpClient: HttpClient, private userService: UserService) {}
 
-  constructor( private httpClient: HttpClient) {
- 
-   }
-
-   auth(username: string, password: string): Observable<any>{
-      return this.httpClient.post(this.loginUrl,
-        {
-          userName: username,
-          password: password,
-        })
+  auth(username: string, password: string): Observable<HttpResponse<any>> {
+    return this.httpClient.post(
+      this.loginUrl,
+      {
+        userName: username,
+        password: password,
+      },
+      { observe: 'response' }
+    ).pipe(
+      tap((res)=>{
+        const authToken = res.headers.get('x-access-token') ?? '';
+        this.userService.saveToken(authToken)
+      })
+    )
   }
 }
