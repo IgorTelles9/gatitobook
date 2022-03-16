@@ -9,8 +9,11 @@ export const environment = {
   backendPort: '3000',
   userLoginEndpoint: 'user/login',
   userSignupEndpoint: 'user/signup',
-  userExistsEndpoint: 'user/exists'
-
+  userExistsEndpoint: 'user/exists',
+  imgsEndpoint: 'imgs',
+  photosEndpoint: 'photos',
+  likesEndpoint: 'like',
+  commentsEndpoint: 'comments'
 };
 
 /*

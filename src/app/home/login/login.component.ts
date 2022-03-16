@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
   }
 
   clearFields(){
-    this.username = '';
     this.password = '';
   }
 }
