@@ -1,3 +1,4 @@
+import { NewPetComponent } from './new-pet/new-pet.component';
 import { PetsFeedResolver } from './pets-feed/pets-feed.resolver';
 import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { PetsFeedComponent } from './pets-feed/pets-feed.component';
@@ -11,6 +12,10 @@ const routes: Routes = [
     resolve: {
       pets: PetsFeedResolver,
     },
+  },
+  {
+    path: 'new',
+    component: NewPetComponent,
   },
   {
     path: ':petId',

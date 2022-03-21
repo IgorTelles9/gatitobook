@@ -9,6 +9,7 @@ import { PetComponent } from './pet/pet.component';
 import { PetsGridPhotosComponent } from './pets-grid-photos/pets-grid-photos.component';
 import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { CommentsComponent } from './pet-detail/comments/comments.component';
+import { NewPetComponent } from './new-pet/new-pet.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CommentsComponent } from './pet-detail/comments/comments.component';
     PetsGridPhotosComponent,
     PetDetailComponent,
     CommentsComponent,
+    NewPetComponent,
   ],
   imports: [
     CommonModule,

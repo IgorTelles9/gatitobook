@@ -57,4 +57,17 @@ export class PetService {
         })
       );
   }
+
+  upload(description: string, allowComment: boolean, file: File) {
+    const formData = new FormData();
+    formData.append('description', description);
+    formData.append('allowComments', allowComment ? 'true' : 'false');
+    formData.append('imageFile', file);
+
+    return this.httpClient.post(
+      `${this.url}/${env.photosEndpoint}/upload`,
+      formData,
+      { observe: 'events', reportProgress: true }
+    );
+  }
 }
